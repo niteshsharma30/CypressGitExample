@@ -1,0 +1,18 @@
+{
+  "projectId": "Todo List",
+  "supportFile": "cypress/support/index.js",
+  "pluginsFile": "cypress/plugins/index.js",
+  "viewportHeight": 812,
+  "viewportWidth": 375,
+  "watchForFileChanges": false,
+  "video": false,
+  "screenshotOnRunFailure": true,
+  "numTestsKeptInMemory": 50,
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  },
+  "env": {
+    "coverage": false
+  }
+}

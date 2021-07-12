@@ -1,0 +1,58 @@
+stages:
+  - build
+  - cypress test
+
+## Set environment variables for folders in "cache" job settings for npm modules and Cypress binary
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+  CYPRESS_CACHE_FOLDER: "$CI_PROJECT_DIR/cache/Cypress"
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - .cache/*
+    - cache/Cypress
+    - node_modules
+    - build
+    - .lambdatest/*
+
+## Install NPM dependencies and Cypress
+install:
+  image: cypress/browsers:node12.14.1-chrome85-ff81
+  stage: build
+  script:
+    - npm install
+    - npm run build
+
+## Running Cypress
+component-tests:
+  image: cypress/browsers:node12.14.1-chrome85-ff81
+  stage: cypress test
+  script:
+    # install dependencies
+    - npm install
+    # start the server in the background
+    # run Cypress tests in parallel
+    - npm run cypress:ci
+
+  artifacts:
+    when: always
+    paths:
+      - cypress/videos/**/*.mp4
+      - cypress/screenshots/**/*.png
+    expire_in: 1 day
+
+    ## Running Cypress
+lambda-tests:
+  image: cypress/browsers:node12.14.1-chrome85-ff81
+  before_script:
+  - |
+    echo 'export LT_USERNAME="toffer.lim87"' >> ~/.bashrc
+    echo 'export LT_ACCESS_KEY="ZSHHtQdk8chDaghJ9ZOHB6NYrP4etcM790oWK0CNlPLvGaEqyX"' >> ~/.bashrc
+    npm install
+    npm install -g lambdatest-cypress-cli
+
+  stage: cypress test
+  script:
+    - npm run lambda:ci
+

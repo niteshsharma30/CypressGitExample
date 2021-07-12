@@ -1,0 +1,53 @@
+{
+  "name": "react-native-todo-list",
+  "version": "0.10.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "cypress:open": "npx cypress open",
+    "cypress:run": "npx cypress run --headless browser=electron",
+    "cypress:lambda": "lambdatest-cypress run --parallel 5",
+    "cypress:ci": "concurrently -k --success first 'npm:start' 'npm:cypress:run'",
+    "lambda:ci": "concurrently -k --success first 'npm:start' 'npm:cypress:lambda'"
+  },
+  "keywords": [
+    "react-native",
+    "Cypress",
+    "Lambda",
+    "todo-list"
+  ],
+  "author": "Christopher Lim",
+  "license": "ISC",
+  "dependencies": {
+    "@lambdatest/node-tunnel": "^3.0.1",
+    "concurrently": "^6.2.0",
+    "expo": "~42.0.0",
+    "expo-status-bar": "~1.0.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-web": "^0.17.1",
+    "react-scripts": "^4.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "cypress": "^7.6.0",
+    "start-server-and-test": "^1.12.6"
+  },
+  "private": true,
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
