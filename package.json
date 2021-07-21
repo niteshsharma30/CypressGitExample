@@ -9,7 +9,8 @@
     "eject": "react-scripts eject",
     "cypress:open": "npx cypress open",
     "cypress:run": "npx cypress run --headless browser=electron",
-    "cypress:lambda": "lambdatest-cypress run --parallel 5",
+    "cypress:lambda": "lambdatest-cypress run --parallel 1",
+    "cy:verify": "cypress verify",
     "cypress:ci": "concurrently -k --success first 'npm:start' 'npm:cypress:run'",
     "lambda:ci": "concurrently -k --success first 'npm:start' 'npm:cypress:lambda'"
   },
