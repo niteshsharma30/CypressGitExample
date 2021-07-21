@@ -11,6 +11,7 @@
     "cypress:run": "npx cypress run --headless browser=electron",
     "cypress:lambda": "lambdatest-cypress run --parallel 1",
     "cy:verify": "cypress verify",
+    "cy:info": "cypress info",
     "cypress:ci": "concurrently -k --success first 'npm:start' 'npm:cypress:run'",
     "lambda:ci": "concurrently -k --success first 'npm:start' 'npm:cypress:lambda'"
   },
@@ -20,7 +21,7 @@
     "Lambda",
     "todo-list"
   ],
-  "author": "Christopher Lim",
+  "author": "Nitesh Sharma",
   "license": "ISC",
   "dependencies": {
     "@lambdatest/node-tunnel": "^3.0.1",
