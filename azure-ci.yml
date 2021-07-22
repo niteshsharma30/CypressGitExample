@@ -28,4 +28,4 @@ steps:
     script: 
       #!/bin/bash
       
-      lambdatest-cypress run
+      lambdatest-cypress run --sync=true
